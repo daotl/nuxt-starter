@@ -15,6 +15,11 @@ import type { TypedRouteList } from './__routes'
 
 export type RouteListDecl = {
   '404': '404'
+  chainManagementChainIdExplorerLedgerBlockDetailHash: 'chain-management-chainId-explorer-ledger-blockDetail-hash'
+  chainManagementChainIdExplorerLedger: 'chain-management-chainId-explorer-ledger'
+  chainManagementChainIdExplorer: 'chain-management-chainId-explorer'
+  chainManagementChainId: 'chain-management-chainId'
+  chainManagementId: 'chain-management-id'
   hiId: 'hi-id'
   index: 'index'
   restfulPageView: 'restful-page-view'
@@ -23,6 +28,21 @@ export type RouteListDecl = {
 export type TypedRouteParams = {
   '404': {
     catchAll: string | number
+  }
+  'chain-management-chainId-explorer-ledger-blockDetail-hash': {
+    chainId: string | number
+  }
+  'chain-management-chainId-explorer-ledger': {
+    chainId: string | number
+  }
+  'chain-management-chainId-explorer': {
+    chainId: string | number
+  }
+  'chain-management-chainId': {
+    chainId: string | number
+  }
+  'chain-management-id': {
+    id: string | number
   }
   'hi-id': {
     id: string | number

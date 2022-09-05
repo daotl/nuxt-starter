@@ -6,9 +6,25 @@
 
 export const routerPagesNames = {
   '404': '404' as const,
+  chainManagementChainIdExplorerLedgerBlockDetailHash:
+    'chain-management-chainId-explorer-ledger-blockDetail-hash' as const,
+  chainManagementChainIdExplorerLedger:
+    'chain-management-chainId-explorer-ledger' as const,
+  chainManagementChainIdExplorer: 'chain-management-chainId-explorer' as const,
+  chainManagementChainId: 'chain-management-chainId' as const,
+  chainManagementId: 'chain-management-id' as const,
   hiId: 'hi-id' as const,
   index: 'index' as const,
   restfulPageView: 'restful-page-view' as const,
 }
 
-export type TypedRouteList = '404' | 'hi-id' | 'index' | 'restful-page-view'
+export type TypedRouteList =
+  | '404'
+  | 'chain-management-chainId-explorer-ledger-blockDetail-hash'
+  | 'chain-management-chainId-explorer-ledger'
+  | 'chain-management-chainId-explorer'
+  | 'chain-management-chainId'
+  | 'chain-management-id'
+  | 'hi-id'
+  | 'index'
+  | 'restful-page-view'

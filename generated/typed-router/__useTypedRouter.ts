@@ -25,6 +25,13 @@ export const useTypedRouter = (): {
 
   const routesList = {
     '404': '404',
+    chainManagementChainIdExplorerLedgerBlockDetailHash:
+      'chain-management-chainId-explorer-ledger-blockDetail-hash',
+    chainManagementChainIdExplorerLedger:
+      'chain-management-chainId-explorer-ledger',
+    chainManagementChainIdExplorer: 'chain-management-chainId-explorer',
+    chainManagementChainId: 'chain-management-chainId',
+    chainManagementId: 'chain-management-id',
     hiId: 'hi-id',
     index: 'index',
     restfulPageView: 'restful-page-view',
