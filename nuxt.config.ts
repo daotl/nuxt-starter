@@ -1,4 +1,5 @@
 import { ElementPlusResolver } from '@daotl/unplugin-vue-components/resolvers'
+import vitePluginImp from 'vite-plugin-imp'
 
 const lifecycle = process.env.npm_lifecycle_event
 
@@ -114,21 +115,31 @@ export default defineNuxtConfig({
   //     messages: locales,
   //   },
   // },
-  // vite: {
-  //   plugins: [],
-  // },
-  // vite: {
-  //   server: {
-  //     proxy: {
-  //       // https://github.com/nuxt/framework/discussions/1223#discussioncomment-3113141
-  //       '/api': {
-  //         target: 'http://local.dev:8080', // process.env.API_URL,
-  //         changeOrigin: true,
-  //         rewrite: (path) => path,
-  //       },
-  //     },
-  //   },
-  // },
+  vite: {
+    plugins: [
+      vitePluginImp({
+        libList: [
+          {
+            libName: '@formily/element-plus',
+            libDirectory: 'esm',
+            style(name): string {
+              return `@formily/element-plus/esm/${name}/style.js`
+            },
+          },
+        ],
+      }),
+    ],
+    //   server: {
+    //     proxy: {
+    //       // https://github.com/nuxt/framework/discussions/1223#discussioncomment-3113141
+    //       '/api': {
+    //         target: 'http://local.dev:8080', // process.env.API_URL,
+    //         changeOrigin: true,
+    //         rewrite: (path) => path,
+    //       },
+    //     },
+    //   },
+  },
 
   // https://github.com/nuxt/framework/issues/6204#issuecomment-1201398080
   hooks: {
