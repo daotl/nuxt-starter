@@ -1,4 +1,5 @@
 import process from 'node:process'
+import vitePluginImp from 'vite-plugin-imp'
 
 import type { NuxtPage } from '@nuxt/schema'
 
@@ -173,9 +174,21 @@ export default defineNuxtConfig({
     locales: ['en', 'zh-CN'], // used in URL path prefix
     defaultLocale: 'zh-CN', // default locale of your project for Nuxt pages and routing
   },
-  // vite: {
-  //   plugins: [],
-  // },
+  vite: {
+    plugins: [
+      vitePluginImp({
+        libList: [
+          {
+            libName: '@formily/element-plus',
+            libDirectory: 'esm',
+            style(name): string {
+              return `@formily/element-plus/esm/${name}/style.js`
+            },
+          },
+        ],
+      }),
+    ],
+  },
 
   // https://github.com/nuxt/framework/issues/6204#issuecomment-1201398080
   hooks: {
