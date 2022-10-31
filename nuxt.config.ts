@@ -1,6 +1,8 @@
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-const lifecycle = process.env.npm_lifecycle_event
+import locales from './locales'
+
+// const lifecycle = process.env.npm_lifecycle_event
 
 const elementPlusResolver = ElementPlusResolver({
   ssr: true,
@@ -62,12 +64,10 @@ export default defineNuxtConfig({
     ['unplugin-auto-import/nuxt', autoImportOpts],
     ['unplugin-vue-components/nuxt', vueComponentsOpts],
     '@vueuse/nuxt',
-    '@unocss/nuxt',
     '@pinia/nuxt',
+    '@nuxtjs/i18n',
+    '@unocss/nuxt',
     '@nuxtjs/color-mode',
-    // Replaced by `plugin/i18n.ts` for now for this issue:
-    // https://github.com/intlify/nuxt3/issues/68#issuecomment-1139435935
-    // '@intlify/nuxt3',
     // 'nuxt-graphql-codegen'
   ],
   build: {
@@ -113,6 +113,15 @@ export default defineNuxtConfig({
     // Name of the routesNames object
     // routesObjectName: 'routerPagesNames',
   },
+  i18n: {
+    vueI18n: {
+      legacy: false,
+      globalInjection: true,
+      locale: 'zh-CN',
+      fallbackLocale: 'en',
+      messages: locales,
+    },
+  },
   css: ['~/styles/index.scss'],
   unocss: {
     preflight: true,
@@ -120,13 +129,6 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-  // https://github.com/intlify/nuxt3
-  // intlify: {
-  //   vueI18n: {
-  //     locale: 'zh-CN',
-  //     messages: locales,
-  //   },
-  // },
   // vite: {
   //   server: {
   //     proxy: {
