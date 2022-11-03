@@ -25,6 +25,8 @@
   },
   "editor.formatOnSave": false,
   "i18n-ally.enabledParsers": ["ts"],
+  // https://github.com/lokalise/i18n-ally/issues/751#issuecomment-1177922616
+  "i18n-ally.enabledFrameworks": ["vue-sfc", "vue"],
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.displayLanguage": "en",
   "i18n-ally.localesPaths": ["locales"]

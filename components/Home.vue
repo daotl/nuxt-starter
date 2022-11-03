@@ -30,3 +30,12 @@ const { data, fetching, error } = usePersonQuery({
     </div>
   </div>
 </template>
+
+<i18n lang="yml">
+en:
+  ssrLoading: Loading when jump from other landing page
+  ssrMode: Prefetch on SSR Mode
+zh-CN:
+  ssrLoading: 从其他落地页跳转加载中效果
+  ssrMode: SSR模式预加载数据
+</i18n>

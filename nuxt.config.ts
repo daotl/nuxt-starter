@@ -1,6 +1,10 @@
+import path from 'node:path'
+import url from 'node:url'
+
+import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-const lifecycle = process.env.npm_lifecycle_event
+// const lifecycle = process.env.npm_lifecycle_event
 
 const elementPlusResolver = ElementPlusResolver({
   ssr: true,
@@ -65,13 +69,12 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
-    // Replaced by `plugin/i18n.ts` for now for this issue:
-    // https://github.com/intlify/nuxt3/issues/68#issuecomment-1139435935
-    // '@intlify/nuxt3',
     // 'nuxt-graphql-codegen'
   ],
   build: {
     transpile: [
+      // https://github.com/intlify/vue-i18n-next/issues/1085#issuecomment-1195175075
+      '@intlify/unplugin-vue-i18n',
       // https://github.com/element-plus/element-plus-nuxt-starter/commit/09c84c050fae55600957cd89dba143ba8363fed0#diff-5977891bf10802cdd3cde62f0355105a1662e65b02ae4fb404a27bb0f5f53a07
       'element-plus/es',
       // Fix error: "[nuxt] [request error] [unhandled] [500] Cannot find module './internal/Observable'"
@@ -120,26 +123,30 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
-  // https://github.com/intlify/nuxt3
-  // intlify: {
-  //   vueI18n: {
-  //     locale: 'zh-CN',
-  //     messages: locales,
-  //   },
-  // },
-  // vite: {
-  //   server: {
-  //     proxy: {
-  //       // https://github.com/nuxt/framework/discussions/1223#discussioncomment-3113141
-  //       '/api': {
-  //         target: 'http://local.dev:8080', // process.env.API_URL,
-  //         changeOrigin: true,
-  //         rewrite: (path) => path,
-  //       },
-  //     },
-  //   },
-  //   plugins: [],
-  // },
+  vite: {
+    //   server: {
+    //     proxy: {
+    //       // https://github.com/nuxt/framework/discussions/1223#discussioncomment-3113141
+    //       '/api': {
+    //         target: 'http://local.dev:8080', // process.env.API_URL,
+    //         changeOrigin: true,
+    //         rewrite: (path) => path,
+    //       },
+    //     },
+    //   },
+    plugins: [
+      // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n#-usage
+      VueI18n({
+        defaultSFCLang: 'yml',
+        // include: [
+        //   path.resolve(
+        //     path.dirname(url.fileURLToPath(import.meta.url)),
+        //     './locales/*.yml',
+        //   ),
+        // ],
+      }),
+    ],
+  },
 
   // https://github.com/nuxt/framework/issues/6204#issuecomment-1201398080
   hooks: {

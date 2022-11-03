@@ -59,6 +59,7 @@
     "@graphql-codegen/typescript-operations": "^2.5.5",
     "@graphql-codegen/typescript-vue-apollo": "^3.3.5",
     "@graphql-codegen/typescript-vue-urql": "^2.3.5",
+    "@intlify/unplugin-vue-i18n": "^0.7.0",
     "@nuxtjs/color-mode": "^3.1.8",
     "@pinia/nuxt": "^0.4.3",
     "@stylelint/postcss-css-in-js": "^0.38.0",

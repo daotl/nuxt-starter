@@ -19,7 +19,7 @@ const go = (): void => {
     <input
       id="input"
       v-model="name"
-      :placeholder="$t('input-name')"
+      :placeholder="$t('ssrLoading')"
       type="text"
       autocomplete="off"
       p="x-4 y-2"
@@ -38,3 +38,12 @@ const go = (): void => {
     </div>
   </div>
 </template>
+
+<i18n lang="yml">
+en:
+  inputName: What's your name?
+  ssrLoading: Fuck
+zh-CN:
+  inputName: 你的名字？
+  ssrLoading: 操
+</i18n>

@@ -1,0 +1,8 @@
+clientLoading: 'Loading when client only'
+clientMode: 'Client Mode'
+go: 'Go'
+visited: '{count} page views since {time}'
+back: 'Back'
+alias: 'Also as known as'
+China: 'China'
+'Phil Xu': 'Phil Xu'

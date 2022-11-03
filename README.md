@@ -43,7 +43,7 @@ References:
   })
   ```
 
-- 🌏 [i18n](https://github.com/intlify/nuxt3) customized intlify i18n - set preferred language according to browser, and save user's preferred language to cookie.
+- 🌏 [i18n](https://github.com/intlify/vue-i18n-next/blob/master/docs/guide/integrations/nuxt3.md#nuxt-3-integration) vue-i18n-next - set preferred language according to browser, and save user's preferred language to cookie.
 
 - ⚡️ Vite - Instant HMR
 
