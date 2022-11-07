@@ -1,10 +1,9 @@
-import { ElementPlusResolver } from '@daotl/unplugin-vue-components/resolvers'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vitePluginImp from 'vite-plugin-imp'
 
 const lifecycle = process.env.npm_lifecycle_event
 
 const elementPlusResolver = ElementPlusResolver({
-  nuxt: true,
   ssr: true,
   directives: false,
 })
@@ -17,18 +16,39 @@ const autoImportOpts = {
     // custom
     {},
   ],
-  // dirs: ['generated/typed-router'],
   resolvers: [elementPlusResolver],
   dts: './generated/auto-imports.d.ts',
   vueTemplate: true,
 }
 
 const vueComponentsOpts = {
-  resolvers: [ElementPlusResolver({ nuxt: true, ssr: true })],
+  resolvers: [elementPlusResolver],
   dts: './generated/vue-components.d.ts',
 }
 
 export default defineNuxtConfig({
+  // Without this option, `rootDir` was incorrectly set to `web/frontend/web-frontend` because of pnpm workspace
+  // rootDir: '.',
+  /**
+   * Used to set the modules directories for path resolving (for example, webpack's `resolveLoading`, `nodeExternals` and `postcss`).
+   * The configuration path is relative to `options.rootDir` (default is current working directory).
+   * Setting this field may be necessary if your project is organized as a yarn workspace-styled mono-repository.
+   * default: ["/<rootDir>/node_modules","/home/pooya/Code/framework/packages/schema/node_modules"]
+   */
+  // modulesDir: ['/<rootDir>/node_modules', '../../node_modules'],
+  // ssr: false,
+  // sourcemap: false,
+  // nitro: {
+  //   esbuild: {
+  //     options: {
+  //       minify: false,
+  //     },
+  //   },
+  // },
+  // alias: {
+  //   '@common': path.resolve(__dirname, '../common/src'),
+  //   '@backend': path.resolve(__dirname, '../backend/src'),
+  // },
   imports: {
     dirs: [
       'generated/typed-router',
@@ -53,13 +73,11 @@ export default defineNuxtConfig({
   ],
   build: {
     transpile: [
-      // https://github.com/element-plus/element-plus-nuxt-starter/blob/44644788ee0d2a2580769769f9885b5cd9f7c0ab/nuxt.config.ts#L27
-      ...(lifecycle === 'build' || lifecycle === 'generate'
-        ? ['element-plus']
-        : []),
-      // Already solved by setting `nuxt: truessr: true` to `ElementPlusResolver`
-      // For importing 'element-plus/es/components/xxx/style/css' to work
-      // 'element-plus/es',
+      // https://github.com/element-plus/element-plus-nuxt-starter/commit/09c84c050fae55600957cd89dba143ba8363fed0#diff-5977891bf10802cdd3cde62f0355105a1662e65b02ae4fb404a27bb0f5f53a07
+      'element-plus/es',
+      // Fix error: "[nuxt] [request error] [unhandled] [500] Cannot find module './internal/Observable'"
+      // https://github.com/nuxt/framework/discussions/7772#discussioncomment-3970252
+      'rxjs',
     ],
   },
   experimental: {
@@ -95,11 +113,6 @@ export default defineNuxtConfig({
     outDir: './generated/typed-router',
     // Name of the routesNames object
     // routesObjectName: 'routerPagesNames',
-  },
-  // https://github.com/cipami/nuxt-lodash
-  lodash: {
-    prefix: 'lo',
-    prefixSkip: [],
   },
   css: ['~/styles/index.scss'],
   unocss: {
