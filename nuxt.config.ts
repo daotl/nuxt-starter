@@ -182,7 +182,7 @@ export default defineNuxtConfig({
             libName: '@formily/element-plus',
             libDirectory: 'esm',
             style(name): string {
-              return `@formily/element-plus/esm/${name}/style.js`
+              return `@formily/element-plus/esm/style.js`
             },
           },
         ],
