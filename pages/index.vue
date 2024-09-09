@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const online = useOnline()
+// import TestFormily from './formily/TestFormily.vue';
 </script>
 
 <template>
@@ -19,5 +20,8 @@ const online = useOnline()
       </template>
     </Suspense>
     <InputEntry />
+
+    <!-- 测试formily请放开 -->
+    <!-- <TestFormily /> -->
   </div>
 </template>

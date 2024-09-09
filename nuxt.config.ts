@@ -1,7 +1,7 @@
 import process from 'node:process'
-import vitePluginImp from 'vite-plugin-imp'
 
 import type { NuxtPage } from '@nuxt/schema'
+import vitePluginImp from 'vite-plugin-imp'
 
 import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
@@ -182,7 +182,7 @@ export default defineNuxtConfig({
             libName: '@formily/element-plus',
             libDirectory: 'esm',
             style(name): string {
-              return `@formily/element-plus/esm/style.js`
+              return `@formily/element-plus/esm/${name}/style.js`
             },
           },
         ],
