@@ -87,7 +87,7 @@
     "unplugin-auto-import": "git://github.com/daotl/unplugin-auto-import#6b2bbc40c928340fb473b56d91240d9d617665c4",
     "vite": "^5.2.13",
     "vite-plugin-imp": "^2.4.0",
-    "vue-tsc": "^1.8.22"
+    "vue-tsc": "^2.1.6"
   },
   "resolutions": {
     "@intlify/shared": "9.7.1"
