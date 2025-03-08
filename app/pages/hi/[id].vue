@@ -22,7 +22,7 @@ definePageMeta({
       {{ name }}!
     </div>
 
-    <template v-if="user.otherNames.length">
+    <template v-if="user.otherNames.length > 0">
       <div text-sm my-4>
         <span op-50>Also as known as:</span>
         <ul>
