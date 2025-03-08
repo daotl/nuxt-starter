@@ -10,6 +10,10 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
     '@nuxt/eslint',
+    ['nuxt-typed-router', {
+      // strict: true,
+      disablePrettier: true,
+    }],
   ],
 
   devtools: {
