@@ -53,6 +53,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-08-14',
 
   nitro: {
+    // Enable multi-core handling: https://nitro.unjs.io/deploy/node#cluster-mode
+    preset: 'node-cluster',
     esbuild: {
       options: {
         target: 'esnext',
