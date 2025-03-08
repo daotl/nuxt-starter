@@ -2,7 +2,6 @@ import { pwa } from './app/config/pwa'
 import { appDescription } from './app/constants/index'
 
 export default defineNuxtConfig({
-
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -65,6 +64,13 @@ export default defineNuxtConfig({
       routes: ['/'],
       ignore: ['/hi'],
     },
+    // Proxy backend APIs
+    // devProxy: {
+    //   '/api': {
+    //     target: 'http://local.dev:8080/api',
+    //     changeOrigin: true,
+    //   },
+    // },
   },
   typescript: {
     strict: true,
