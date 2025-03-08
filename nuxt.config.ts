@@ -2,6 +2,7 @@ import { pwa } from './app/config/pwa'
 import { appDescription } from './app/constants/index'
 
 export default defineNuxtConfig({
+
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -62,6 +63,10 @@ export default defineNuxtConfig({
       routes: ['/'],
       ignore: ['/hi'],
     },
+  },
+  typescript: {
+    strict: true,
+    typeCheck: true,
   },
 
   eslint: {

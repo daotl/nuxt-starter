@@ -1,0 +1,14 @@
+assert_lefthook_installed: true
+
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: '*'
+      run: npx eslint --cache --fix {staged_files}
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx --no -- commitlint --edit $1
