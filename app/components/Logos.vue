@@ -3,10 +3,10 @@ const title = useAppConfig().title
 </script>
 
 <template>
-  <div inline-flex cursor-default text-2xl font-300>
+  <div text-2xl font-300 inline-flex cursor-default>
     <div flex flex-col children:mx-auto>
-      <img inline-block h-18 w-18 src="../assets/images/nuxt.png">
-      <span mt--2 text-green5>Nuxt 3</span>
+      <img h-18 w-18 inline-block src="/nuxt.svg">
+      <span text-green5 mt--2>Nuxt 3</span>
     </div>
     <div
       text="3xl gray4"
@@ -17,8 +17,8 @@ const title = useAppConfig().title
       hover:rotate-135
     />
     <div flex flex-col children:mx-auto>
-      <img inline-block h-18 w-18 src="/vite.png">
-      <span mt--2 text-purple5>{{ title }}</span>
+      <img h-18 w-18 inline-block src="/vite.png">
+      <span text-purple-500 mt--2>Vitesse</span>
     </div>
   </div>
 </template>

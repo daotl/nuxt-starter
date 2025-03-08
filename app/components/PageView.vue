@@ -10,7 +10,7 @@ const { t } = useI18n({
 
 <template>
   <div text-gray:80>
-    {{ t('visited', { count: data?.pageview, time }) }}
+    <span text-gray>{{ t('visited', { count: data?.pageview, time }) }}</span>
   </div>
 </template>
 

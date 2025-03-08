@@ -2,8 +2,8 @@ import process from 'node:process'
 
 import type { NuxtPage } from '@nuxt/schema'
 
-import { pwa } from './config/pwa'
-import { appDescription } from './constants/index'
+import { pwa } from './app/config/pwa'
+import { appDescription } from './app/constants/index'
 
 const apiBase = '' // '/nuxt-starter'
 const runtimeConfig = {
@@ -30,7 +30,7 @@ const autoImportOpts = {
     // custom
     {},
   ],
-  dts: './generated/auto-imports.d.ts',
+  dts: '../generated/auto-imports.d.ts',
   vueTemplate: true,
 }
 
@@ -91,6 +91,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@element-plus/nuxt',
     '@nuxtjs/i18n',
+    '@nuxt/eslint',
 
     // Temporary workaround for `*.ts` files in `pages/` causing errors related to auto route generation
     // https://github.com/nuxt/framework/issues/6920#issuecomment-1232596227
@@ -102,27 +103,12 @@ export default defineNuxtConfig({
       }
     },
   ],
-  build: {
-    transpile: [
-      // Fix error: "[nuxt] [request error] [unhandled] [500] Cannot find module './internal/Observable'"
-      // https://github.com/nuxt/framework/discussions/7772#discussioncomment-3970252
-      'rxjs',
-    ],
-  },
-  experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
-    payloadExtraction: false,
-    renderJsonPayloads: true,
-    typedPages: true,
-    // May disable for error:
-    // https://github.com/antfu/vitesse-nuxt3/issues/42#issuecomment-1126377430
-    // viteNode: false,
-  },
+
   typescript: {
     strict: true,
     typeCheck: true,
   },
+
   vue: {
     compilerOptions: {
       directiveTransforms: {
@@ -133,16 +119,17 @@ export default defineNuxtConfig({
       },
     },
   },
-  css: ['~/styles/index.scss', '@unocss/reset/tailwind.css'],
-  unocss: {
-    attributify: true,
-    icons: true,
-    // https://github.com/unocss/unocss/issues/932
-    // @unocss/reset/tailwind.css is inserted after the Element UI style, causing button background to be transparent
-    // preflight: true,
+
+  devtools: {
+    enabled: true,
   },
-  colorMode: {
-    classSuffix: '',
+
+  build: {
+    transpile: [
+      // Fix error: "[nuxt] [request error] [unhandled] [500] Cannot find module './internal/Observable'"
+      // https://github.com/nuxt/framework/discussions/7772#discussioncomment-3970252
+      'rxjs',
+    ],
   },
 
   app: {
@@ -156,56 +143,47 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: appDescription },
-        {
-          name: 'apple-mobile-web-app-status-bar-style',
-          content: 'black-translucent',
-        },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        { name: 'theme-color', media: '(prefers-color-scheme: light)', content: 'white' },
+        { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
       ],
     },
   },
 
-  pwa,
-  // https://v8.i18n.nuxtjs.org/options/vue-i18n
-  i18n: {
-    // Get URLs with prefixes for every language, but URLs for the default language will also have a non-prefixed version (though the prefixed version will be preferred when detectBrowserLanguage is enabled).
-    strategy: 'no_prefix',
-    // Used for Link localizing
-    locales: ['en', 'zh-CN'], // used in URL path prefix
-    defaultLocale: 'zh-CN', // default locale of your project for Nuxt pages and routing
+  future: {
+    compatibilityVersion: 4,
   },
-  // vite: {
-  //   plugins: [],
-  // },
 
-  // https://github.com/nuxt/framework/issues/6204#issuecomment-1201398080
-  hooks: {
-    // Improved pages module configuration
-    // https://github.com/nuxt/nuxt/issues/12333
-    'pages:extend': function (pages) {
-      function removePagesMatching(
-        pattern: RegExp,
-        pages: NuxtPage[] = [],
-      ): void {
-        const pagesToRemove = []
-        for (const page of pages) {
-          if (pattern.test(page.file ?? '')) {
-            pagesToRemove.push(page)
-          }
-          else {
-            removePagesMatching(pattern, page.children)
-          }
-        }
+  experimental: {
+    // when using generate, payload js assets included in sw precache manifest
+    // but missing on offline, disabling extraction it until fixed
+    payloadExtraction: false,
+    renderJsonPayloads: true,
+    typedPages: true,
+  },
 
-        for (const page of pagesToRemove) {
-          pages.splice(pages.indexOf(page), 1)
-        }
-      }
-      // eslint-disable-next-line regexp/no-unused-capturing-group
-      removePagesMatching(/pages(.*)\/components\/|\.ts$/, pages)
+  compatibilityDate: '2024-08-14',
+
+  css: ['~/styles/index.scss', '@unocss/reset/tailwind.css'],
+  unocss: {
+    attributify: true,
+    icons: true,
+    // https://github.com/unocss/unocss/issues/932
+    // @unocss/reset/tailwind.css is inserted after the Element UI style, causing button background to be transparent
+    // preflight: true,
+  },
+  colorMode: {
+    classSuffix: '',
+  },
+
+  eslint: {
+    config: {
+      standalone: false,
+      nuxt: {
+        sortConfigKeys: true,
+      },
     },
   },
 
-  devtools: {
-    enabled: true,
-  },
+  pwa,
 })

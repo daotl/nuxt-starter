@@ -18,7 +18,7 @@ const { t } = useI18n({
 
 <template>
   <div>
-    <div i-twemoji:waving-hand inline-block animate-shake-x animate-duration-5000 text-4xl />
+    <div i-twemoji:waving-hand text-4xl inline-block animate-shake-x animate-duration-5000 />
     <h3 text-2xl font-500>
       {{ t('hi') }}
     </h3>
@@ -27,7 +27,7 @@ const { t } = useI18n({
     </div>
 
     <template v-if="user.otherNames.length">
-      <p my-4 text-sm>
+      <div text-sm my-4>
         <span op-50>Also as known as:</span>
         <ul>
           <li v-for="otherName in user.otherNames" :key="otherName">
@@ -36,14 +36,14 @@ const { t } = useI18n({
             </router-link>
           </li>
         </ul>
-      </p>
+      </div>
     </template>
 
     <Counter />
 
     <div>
       <NuxtLink
-        class="m-3 text-sm btn"
+        class="text-sm m-3 btn"
         to="/"
       >
         {{ $t('back') }}
