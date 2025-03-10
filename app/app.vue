@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { appName } from '~/constants'
+const title = useRuntimeConfig().public.title
 
 useHead({
-  title: appName,
+  title,
 })
 </script>
 

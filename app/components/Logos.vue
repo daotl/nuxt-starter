@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const title = useRuntimeConfig().public.title
+</script>
+
 <template>
   <div text-2xl font-300 inline-flex cursor-default>
     <div flex flex-col children:mx-auto>
@@ -11,7 +15,7 @@
     />
     <div flex flex-col children:mx-auto>
       <img h-18 w-18 inline-block src="/vite.png">
-      <span text-purple-500 mt--2>Vitesse</span>
+      <span text-purple-500 mt--2>{{ title }}</span>
     </div>
   </div>
 </template>

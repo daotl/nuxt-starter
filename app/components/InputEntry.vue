@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const name = ref('')
+const conf = useAppConfig()
+const name = ref(conf.name)
 
 const router = useRouter()
 function go() {
   if (name.value) {
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
+    updateAppConfig({ ...conf, name: name.value })
+    router.push(`/hi/${encodeURIComponent(conf.name)}`)
   }
 }
 </script>

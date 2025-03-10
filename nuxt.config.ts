@@ -1,6 +1,23 @@
 import { pwa } from './app/config/pwa'
 import { appDescription } from './app/constants/index'
 
+const apiBase = '' // '/nuxt-starter'
+const runtimeConfig = {
+  // The private keys which are only available within server-side
+  apiSecret: '123',
+  // Keys within public, will be also exposed to the client-side
+  public: {
+
+    title: '@daotl/nuxt-starter',
+    // When adding apiBase to the runtimeConfig.public, Nuxt adds it to each page payload. We can universally access apiBase in both server and browser.
+    // apiBase,
+    backends: {
+      restApiBaseUrl: `${apiBase}/api`,
+      wsApiBaseUrl: `${apiBase}/ws`,
+    },
+  },
+}
+
 export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
@@ -37,6 +54,8 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
+  runtimeConfig,
+
   future: {
     compatibilityVersion: 4,
   },
@@ -72,6 +91,7 @@ export default defineNuxtConfig({
     //   },
     // },
   },
+
   typescript: {
     strict: true,
     typeCheck: true,
