@@ -29,6 +29,8 @@
 
 - 📑 [Layout system](./app/layouts).
 
+- 🌏 [i18n via @nuxtjs/i18n](https://i18n.nuxtjs.org/).
+
 - 📥 APIs auto importing - for Composition API, VueUse and custom composables.
 
 - 🏎 Zero-config cloud functions and deploy.
