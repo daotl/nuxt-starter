@@ -1,0 +1,27 @@
+import type { Messages } from './type'
+
+export default {
+  clientLoading: '客户端加载中效果',
+  clientMode: '客户端模式数据',
+  ssrLoading: '从其他落地页跳转加载中效果',
+  ssrMode: 'SSR模式预加载数据',
+  go: '确定',
+  back: '返回',
+  justNow: '刚刚',
+  timeAgo: '{0}之前',
+  inTime: '{0}之后',
+  second: '秒',
+  seconds: '秒',
+  minute: '分钟',
+  minutes: '分钟',
+  hour: '小时',
+  hours: '小时',
+  day: '天',
+  days: '天',
+  week: '周',
+  weeks: '周',
+  month: '月',
+  months: '月',
+  year: '年',
+  years: '年',
+} satisfies Messages

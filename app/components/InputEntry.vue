@@ -9,6 +9,10 @@ function go() {
     router.push(`/hi/${encodeURIComponent(conf.name)}`)
   }
 }
+
+const { t } = useI18n({
+  useScope: 'local',
+})
 </script>
 
 <template>
@@ -16,7 +20,7 @@ function go() {
     <input
       id="input"
       v-model="name"
-      placeholder="What's your name?"
+      :placeholder="t('inputName')"
       type="text"
       autocomplete="off"
       p="x-4 y-2" m="t-5" w="250px"
@@ -31,8 +35,15 @@ function go() {
         :disabled="!name"
         @click="go"
       >
-        GO
+        {{ $t('go') }}
       </button>
     </div>
   </div>
 </template>
+
+<i18n lang="yaml">
+en:
+  inputName: What's your name?
+zh-CN:
+  inputName: 你的名字？
+</i18n>
